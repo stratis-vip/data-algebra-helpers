@@ -27,11 +27,10 @@ cartesianProduct _ [] = []
 cartesianProduct a b = [(x, y) | x <- a, y <- b]
 
 -- | Υπολογίζει το δειγματικό χώρο χωρίς επανατοποθέτηση
-premutables :: (Eq a) => [a] -> [a] -> [(a, a)]
-premutables [] _ = []
-premutables _ [] = []
-premutables [x] [y] = [(x, y)]
-premutables (x : xs) ys = [(x, b) | b <- ys] ++ premutables (filter (/= x) xs) ys
+premutables :: (Eq a) => [a] -> [(a, a)]
+premutables [] = []
+premutables [_] = []
+premutables xs = [(x, y) | x <- xs, y <- xs, x /= y]
 
 clearScreen :: IO ()
 clearScreen = do
