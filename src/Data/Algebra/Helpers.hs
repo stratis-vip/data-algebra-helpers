@@ -5,10 +5,16 @@ module Data.Algebra.Helpers (
   clearScreen,
   prepareText,
   runTests,
+  formatSampleSpace,
 ) where
 
+import Data.List (intersperse)
 import System.Process (callCommand)
 import Test.Hspec
+
+-- | Create a formatted sample space string, for any Show-able tuple list
+formatSampleSpace :: (Show a) => String -> [a] -> String
+formatSampleSpace s elems = "s = { " ++ concat (intersperse ", " (map show elems)) ++ " }"
 
 -- | υπολογίζει το δειγματικό χώρο με επανατοποθέτηση
 combinations :: [a] -> [(a, a)]
