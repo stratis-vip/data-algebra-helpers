@@ -14,6 +14,7 @@ import Test.Hspec
 
 -- | Create a formatted sample space string, for any Show-able tuple list
 formatSampleSpace :: (Show a) => String -> [a] -> String
+formatSampleSpace s [] = s ++ " = ∅ "
 formatSampleSpace s elems = s ++ " = { " ++ concat (intersperse ", " (map show elems)) ++ " }"
 
 -- | υπολογίζει το δειγματικό χώρο με επανατοποθέτηση
