@@ -41,12 +41,20 @@ source-repository-package
 
 1. __formatSampleSpace__
 
-    Δημιουργεί την μαθηματική απεικόνιση με {} ενός, δειγματικού χώρου, για κάθε 'tuple list'. Αν ο δειγματικός χώρος είναι κενός, τότε εμφανίζει τον χαρακτήρα ∅.
+    Δημιουργεί την μαθηματική απεικόνιση με {} ενός, δειγματικού χώρου, για κάθε 'tuple list'. Αν ο δειγματικός χώρος είναι κενός, τότε εμφανίζει τον χαρακτήρα ∅. Χρησιμοποιεί "formatters" που είναι συνάρτηση:
 
-  ```haskell
- formatSampleSpace :: (Show a) => String -> [a] -> String
-```
+    ```haskell
+    formatter:: a ->String
+    ```
 
+που διαμορφώνουν την έξοδο ως String. Προς στιγμή υπάρχουν οι:
+
+* tupleFormatter (Char, Char)
+* numFormatter (Num a)
+
+ ```haskell
+ formatSampleSpace :: (Foldable t) => (a -> String) -> String -> t a -> String
+ ```
 2. __clearScreen__
 
     Καθαρίζει το τερματικό!
