@@ -33,11 +33,11 @@ formatSampleSpace formatter s elems
 
 -- | format a tuple of (Char, Char)
 tupleFormatter :: (Char, Char) -> String
-tupleFormatter (a, b) = "('" ++ [a] ++ "', '" ++ [b] ++ "')"
+tupleFormatter (a, b) = "(" ++ [a] ++ ", " ++ [b] ++ ")"
 
 -- | format a tuple of (Char, Char, Char)
 tripleFormatter :: (Char, Char, Char) -> String
-tripleFormatter (a, b, c) = "('" ++ [a] ++ "', '" ++ [b] ++ "', '" ++ [c] ++ "')"
+tripleFormatter (a, b, c) = "(" ++ [a] ++ ", " ++ [b] ++ ", " ++ [c] ++ ")"
 
 numFormatter :: (Num a, Show a) => a -> String
 numFormatter = show
