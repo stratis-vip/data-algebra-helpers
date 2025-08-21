@@ -12,27 +12,18 @@ import Data.List (intersperse)
 import System.Process (callCommand)
 import Test.Hspec
 
--- | Create a formatted sample space string, for any Show-able tuple list
+-- ============================================
+--             TEXT SUPPORT
+-- ============================================
+
+{- | Δημιουργεί την μαθηματική απεικόνιση με {} ενός,
+δειγματικού χώρου, για κάθε 'tuple list'
+-}
 formatSampleSpace :: (Show a) => String -> [a] -> String
 formatSampleSpace s [] = s ++ " = ∅ "
 formatSampleSpace s elems = s ++ " = { " ++ concat (intersperse ", " (map show elems)) ++ " }"
 
--- | υπολογίζει το δειγματικό χώρο με επανατοποθέτηση
-combinations :: [a] -> [(a, a)]
-combinations x = cartesianProduct x x
-
--- | Υπολογίζει το καρτεσιανό γινόμενο μεταξύ δυο συνόλων.
-cartesianProduct :: [a] -> [a] -> [(a, a)]
-cartesianProduct [] _ = []
-cartesianProduct _ [] = []
-cartesianProduct a b = [(x, y) | x <- a, y <- b]
-
--- | Υπολογίζει το δειγματικό χώρο χωρίς επανατοποθέτηση
-premutables :: (Eq a) => [a] -> [(a, a)]
-premutables [] = []
-premutables [_] = []
-premutables xs = [(x, y) | x <- xs, y <- xs, x /= y]
-
+-- | Καθαρίζει το τερματικό
 clearScreen :: IO ()
 clearScreen = do
   -- On Unix-like systems (Linux, macOS):
@@ -59,6 +50,26 @@ splitSentence s w
   replaceQuotes = map (\x -> if x == '"' then '\"' else x)
   isThereanl :: String -> Bool
   isThereanl = elem '\n'
+
+-- ============================================
+--              CALCULATORS
+-- ============================================
+
+-- | υπολογίζει το δειγματικό χώρο με επανατοποθέτηση
+combinations :: [a] -> [(a, a)]
+combinations x = cartesianProduct x x
+
+-- | Υπολογίζει το καρτεσιανό γινόμενο μεταξύ δυο συνόλων.
+cartesianProduct :: [a] -> [a] -> [(a, a)]
+cartesianProduct [] _ = []
+cartesianProduct _ [] = []
+cartesianProduct a b = [(x, y) | x <- a, y <- b]
+
+-- | Υπολογίζει το δειγματικό χώρο χωρίς επανατοποθέτηση
+premutables :: (Eq a) => [a] -> [(a, a)]
+premutables [] = []
+premutables [_] = []
+premutables xs = [(x, y) | x <- xs, y <- xs, x /= y]
 
 runTests :: IO ()
 runTests = hspec $ do
