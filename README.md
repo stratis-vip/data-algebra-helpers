@@ -83,4 +83,12 @@ prepareText s = putStrLn $ concat . splitSentence s $ 80
    premutables :: (Eq a) => [a] -> [(a, a)]
     ```
 
+3. __cartesianProduct__
+
+   Υπολογίζει το καρτεσιανό γινόμενο μεταξύ δυο συνόλων.
+
+   ```haskell
+    cartesianProduct :: [a] -> [a] -> [(a, a)]
+    ```
+
 ### Διάφορες

@@ -6,6 +6,7 @@ module Data.Algebra.Helpers (
   prepareText,
   runTests,
   formatSampleSpace,
+  cartesianProduct,
 ) where
 
 import Data.List (intersperse)
@@ -13,7 +14,7 @@ import System.Process (callCommand)
 import Test.Hspec
 
 -- ============================================
---             TEXT SUPPORT
+--             🆎 TEXT SUPPORT 
 -- ============================================
 
 {- | Δημιουργεί την μαθηματική απεικόνιση με {} ενός,
@@ -52,7 +53,7 @@ splitSentence s w
   isThereanl = elem '\n'
 
 -- ============================================
---              CALCULATORS
+--              CALCULATORS 🧮
 -- ============================================
 
 -- | υπολογίζει το δειγματικό χώρο με επανατοποθέτηση
