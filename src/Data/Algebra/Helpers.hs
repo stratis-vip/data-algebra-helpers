@@ -6,9 +6,12 @@ module Data.Algebra.Helpers (
   prepareText,
   runTests,
   formatSampleSpace,
+  tupleFormatter,
+  numFormatter,
   cartesianProduct,
 ) where
 
+import Data.Foldable (toList)
 import Data.List (intersperse)
 import System.Process (callCommand)
 import Test.Hspec
@@ -20,9 +23,18 @@ import Test.Hspec
 {- | Δημιουργεί την μαθηματική απεικόνιση με {} ενός,
 δειγματικού χώρου, για κάθε 'tuple list'
 -}
-formatSampleSpace :: (Show a) => String -> [a] -> String
-formatSampleSpace s [] = s ++ " = ∅ "
-formatSampleSpace s elems = s ++ " = { " ++ concat (intersperse ", " (map show elems)) ++ " }"
+formatSampleSpace :: (Foldable t) => (a -> String) -> String -> t a -> String
+formatSampleSpace formatter s elems
+  | null elemsList = s ++ " = ∅"
+  | otherwise = s ++ " = { " ++ concat (intersperse ", " (map formatter elemsList)) ++ " }"
+ where
+  elemsList = toList elems
+
+tupleFormatter :: (Char, Char) -> String
+tupleFormatter (a, b) = "('" ++ [a] ++ "', '" ++ [b] ++ "')"
+
+numFormatter :: (Num a, Show a) => [a] -> String
+numFormatter = show
 
 -- | Καθαρίζει το τερματικό
 clearScreen :: IO ()
