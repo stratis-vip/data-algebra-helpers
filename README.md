@@ -50,11 +50,13 @@ source-repository-package
 που διαμορφώνουν την έξοδο ως String. Προς στιγμή υπάρχουν οι:
 
 * tupleFormatter (Char, Char)
+* tripleFormatter (Char, Char, Char)
 * numFormatter (Num a)
 
  ```haskell
  formatSampleSpace :: (Foldable t) => (a -> String) -> String -> t a -> String
  ```
+
 2. __clearScreen__
 
     Καθαρίζει το τερματικό!

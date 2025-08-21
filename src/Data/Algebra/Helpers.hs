@@ -7,6 +7,7 @@ module Data.Algebra.Helpers (
   runTests,
   formatSampleSpace,
   tupleFormatter,
+  tripleFormatter,
   numFormatter,
   cartesianProduct,
 ) where
@@ -30,10 +31,15 @@ formatSampleSpace formatter s elems
  where
   elemsList = toList elems
 
+-- | format a tuple of (Char, Char)
 tupleFormatter :: (Char, Char) -> String
 tupleFormatter (a, b) = "('" ++ [a] ++ "', '" ++ [b] ++ "')"
 
-numFormatter :: (Num a, Show a) => [a] -> String
+-- | format a tuple of (Char, Char, Char)
+tripleFormatter :: (Char, Char, Char) -> String
+tripleFormatter (a, b, c) = "('" ++ [a] ++ "', '" ++ [b] ++ "', '" ++ [c] ++ "')"
+
+numFormatter :: (Num a, Show a) => a -> String
 numFormatter = show
 
 -- | Καθαρίζει το τερματικό
