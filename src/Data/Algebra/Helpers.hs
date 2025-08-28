@@ -1,15 +1,16 @@
 module Data.Algebra.Helpers (
   -- * functions
-  combinations,
-  premutables,
+  cartesianProduct,
   clearScreen,
+  combinations,
+  drawAnswer,
+  formatSampleSpace,
+  numFormatter,
+  premutables,
   prepareText,
   runTests,
-  formatSampleSpace,
-  tupleFormatter,
   tripleFormatter,
-  numFormatter,
-  cartesianProduct,
+  tupleFormatter,
 ) where
 
 import Data.Foldable (toList)
@@ -69,6 +70,19 @@ splitSentence s w
   replaceQuotes = map (\x -> if x == '"' then '\"' else x)
   isThereanl :: String -> Bool
   isThereanl = elem '\n'
+
+{- | Δημιουργεί ένα πλαίσιο γύρω από το αποτέλεσμα κεντραρισμένο στη
+θεση Int στο τερματικό.
+-}
+drawAnswer :: String -> Int -> IO ()
+drawAnswer s w = do
+  let padding = 1
+      width = length s + 2 * padding
+      horizontal = replicate width '─'
+      lPad = replicate (div w 2 - (div width 2)) ' '
+  putStrLn $ lPad ++ "┌" ++ horizontal ++ "┐"
+  putStrLn $ lPad ++ "│" ++ replicate padding ' ' ++ s ++ replicate padding ' ' ++ "│"
+  putStrLn $ lPad ++ "└" ++ horizontal ++ "┘"
 
 -- ============================================
 --              CALCULATORS 🧮

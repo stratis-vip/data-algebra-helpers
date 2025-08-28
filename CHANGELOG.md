@@ -8,5 +8,9 @@ i can override unicode chars showing encoded.
 * Added numFormatter which is alias to Show
 
 ## 0.1.0.17 -- 2025-08-21
+
 * Added tripleFormatter (Char, Char, Char)
 
+## 0.1.0.18(9) -- 2025-08-21
+
+* removed th "'" from formatters!
